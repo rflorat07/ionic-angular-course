@@ -1,0 +1,9 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "ionic-angular",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "server": {
+    "url": "http://10.1.1.105:8101"
+  }
+}
