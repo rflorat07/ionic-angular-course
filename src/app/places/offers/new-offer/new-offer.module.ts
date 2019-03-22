@@ -4,9 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-import { SharedModule } from 'src/app/shared/shared.module';
 
 import { NewOfferPage } from './new-offer.page';
+import { SharedModule } from '../../../shared/shared.module';
 
 const routes: Routes = [
   {

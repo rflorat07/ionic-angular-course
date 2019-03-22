@@ -1,31 +1,37 @@
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Renderer2, OnDestroy, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  OnDestroy,
+  Input
+} from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-
-import { environment } from 'src/environments/environment';
-import { markParentViewsForCheck } from '@angular/core/src/view/util';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-map-modal',
   templateUrl: './map-modal.component.html',
-  styleUrls: ['./map-modal.component.scss'],
+  styleUrls: ['./map-modal.component.scss']
 })
 export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
-
-  googleMaps: any;
-  clickListener: any;
-
-  @Input() selectable = true;
-  @Input() title = 'Pick Location';
-  @Input() closeButtonText = 'Cancel';
-  @Input() center = { lat: -34.397, lng: 150.644 };
   @ViewChild('map') mapElementRef: ElementRef;
+  @Input() center = { lat: -34.397, lng: 150.644 };
+  @Input() selectable = true;
+  @Input() closeButtonText = 'Cancel';
+  @Input() title = 'Pick Location';
+  clickListener: any;
+  googleMaps: any;
 
   constructor(
-    private renderer: Renderer2,
-    private modalCtrl: ModalController) { }
+    private modalCtrl: ModalController,
+    private renderer: Renderer2
+  ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   ngAfterViewInit() {
     this.getGoogleMaps()
@@ -34,7 +40,7 @@ export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
         const mapEl = this.mapElementRef.nativeElement;
         const map = new googleMaps.Map(mapEl, {
           center: this.center,
-          zoom: 14
+          zoom: 16
         });
 
         this.googleMaps.event.addListenerOnce(map, 'idle', () => {
@@ -57,8 +63,10 @@ export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
           });
           marker.setMap(map);
         }
-
-      }).catch(err => { console.log(err); });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   onCancel() {
@@ -71,16 +79,17 @@ export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  private getGoogleMaps() {
+  private getGoogleMaps(): Promise<any> {
     const win = window as any;
     const googleModule = win.google;
     if (googleModule && googleModule.maps) {
       return Promise.resolve(googleModule.maps);
     }
-
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
-      script.src = 'https://maps.googleapis.com/maps/api/js?key=' + environment.googleMapsAPIKey;
+      script.src =
+        'https://maps.googleapis.com/maps/api/js?key=' +
+        environment.googleMapsAPIKey;
       script.async = true;
       script.defer = true;
       document.body.appendChild(script);
@@ -94,5 +103,4 @@ export class MapModalComponent implements OnInit, AfterViewInit, OnDestroy {
       };
     });
   }
-
 }

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocationPickerComponent } from './location-picker.component';
+import { ImagePickerComponent } from './image-picker.component';
 
-describe('LocationPickerComponent', () => {
-  let component: LocationPickerComponent;
-  let fixture: ComponentFixture<LocationPickerComponent>;
+describe('ImagePickerComponent', () => {
+  let component: ImagePickerComponent;
+  let fixture: ComponentFixture<ImagePickerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationPickerComponent ]
+      declarations: [ ImagePickerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocationPickerComponent);
+    fixture = TestBed.createComponent(ImagePickerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController, ModalController, ActionSheetController, LoadingController, AlertController } from '@ionic/angular';
+import {
+  NavController,
+  ModalController,
+  ActionSheetController,
+  LoadingController,
+  AlertController
+} from '@ionic/angular';
 import { Subscription } from 'rxjs';
 
 import { PlacesService } from '../../places.service';
@@ -8,7 +14,7 @@ import { Place } from '../../place.model';
 import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
 import { BookingService } from '../../../bookings/booking.service';
 import { AuthService } from '../../../auth/auth.service';
-import { MapModalComponent } from 'src/app/shared/map-modal/map-modal.component';
+import { MapModalComponent } from '../../../shared/map-modal/map-modal.component';
 
 @Component({
   selector: 'app-place-detail',
@@ -32,7 +38,7 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
     private authService: AuthService,
     private alertCtrl: AlertController,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
@@ -138,17 +144,22 @@ export class PlaceDetailPage implements OnInit, OnDestroy {
   }
 
   onShowFullMap() {
-    this.modalCtrl.create({
-      component: MapModalComponent,
-      componentProps: {
-        center: { lat: this.place.location.lat, lng: this.place.location.lng },
-        selectable: false,
-        closeButtonText: 'Close',
-        title: this.place.location.address
-      }
-    }).then(modalEl => {
-      modalEl.present();
-    });
+    this.modalCtrl
+      .create({
+        component: MapModalComponent,
+        componentProps: {
+          center: {
+            lat: this.place.location.lat,
+            lng: this.place.location.lng
+          },
+          selectable: false,
+          closeButtonText: 'Close',
+          title: this.place.location.address
+        }
+      })
+      .then(modalEl => {
+        modalEl.present();
+      });
   }
 
   ngOnDestroy() {

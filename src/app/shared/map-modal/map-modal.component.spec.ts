@@ -1,22 +1,20 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MapModalPage } from './map-modal.page';
+import { MapModalComponent } from './map-modal.component';
 
-describe('MapModalPage', () => {
-  let component: MapModalPage;
-  let fixture: ComponentFixture<MapModalPage>;
+describe('MapModalComponent', () => {
+  let component: MapModalComponent;
+  let fixture: ComponentFixture<MapModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapModalPage ],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA],
+      declarations: [ MapModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MapModalPage);
+    fixture = TestBed.createComponent(MapModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
